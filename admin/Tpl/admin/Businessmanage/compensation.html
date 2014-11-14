@@ -1,0 +1,69 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="#">先赔管理</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex" style="width:80%;position:relative;left:-100px;">
+	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
+	    	<table class="m-table">
+			<thead>
+				<tr>
+					<th style="width:40px;">编号</th>
+					<th>用户ID</th>
+					<th style="width:80px;">商家账号ID</th>
+					<th style="width:40px;">订单ID</th>
+					<th>先赔理由</th>
+					<th>商品</th>
+					<th>总价</th>
+					<td>状态</td>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($list as $key => $value): ?>
+					<tr>
+						<td><?php echo $value['id']; ?></td>
+						<td><?php echo $value['user_id']; ?></td>
+						<td><?php echo $value['rel_id']; ?></td>
+						<td><?php echo $value['order_id']; ?></td>
+						<td><?php echo $value['desc']; ?></td>
+						<td><?php echo $value['deal_name']; ?></td>
+						<td><?php echo $value['total_price'] ?></td>
+						<td><?php echo $value['status']?'用户已申请':"已赔"; ?></td>
+						<td>
+							<!-- <a href="/index.php?m=Dfff&a=edit_appff&id={$value['id']}" class="u-btn btn-xs">编辑</a> -->
+							<a href="/index.php?m=Businessmanage&a=del_compensation&id={$value['id']}" class="u-btn btn-xs">删除</a>
+							<a href="/index.php?m=Businessmanage&a=do_compensation&id={$value['id']}&user_id={$value['user_id']}&account_id={$value['rel_id']}&total_price={$value['total_price']}" class="u-btn btn-xs">先赔</a>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+			</table>
+			<div style="padding:5px;">{$page}</div>
+	    </div>
+	    
+</div>
+
+</body>
+
+</html>

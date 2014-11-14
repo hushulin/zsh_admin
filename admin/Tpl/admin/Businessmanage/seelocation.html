@@ -1,0 +1,78 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="#">查看商家店铺</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex" style="width:80%;position:relative;left:-100px;">
+	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
+	    	<a href="/index.php?m=Businessmanage&a=addlocation&bid={$Think.GET.id}" class="u-btn btn-xs">新增商家店铺</a>
+	    	<br><br>
+	    	<table class="m-table">
+			<thead>
+				<tr>
+					<th style="width:40px;">编号</th>
+					<th>店铺名</th>
+					<th>是否入驻服务到家</th>
+					<th>电话</th>
+					<th>联系人</th>
+					<th>简介</th>
+					<th>预览图</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($list as $key => $value): ?>
+					<tr>
+						<td><?php echo $value['id']; ?></td>
+						<td><?php echo $value['name']; ?></td>
+						<td>
+							<?php if ($value['route'] == 1): ?>
+								是
+							<?php else: ?>
+								否
+							<?php endif; ?>
+						</td>
+						<td>{$value.tel}</td>
+						<td><?php echo $value['contact']; ?></td>
+						<td>{$value.brief}</td>
+						<td>
+							<img src="{$value.preview}" style="width:50px;">
+						</td>
+						<td>
+							<!-- <a href="/index.php?m=Dfff&a=edit_appff&id={$value['id']}" class="u-btn btn-xs">编辑</a> -->
+							<a href="#" class="u-btn btn-xs">删除</a>
+							<!-- <a href="/index.php?m=Businessmanage&a=seelocation&id={$value['id']}" class="u-btn btn-xs">查看店铺</a> -->
+							<a href="/index.php?m=Businessmanage&a=addType&id={$value['id']}" class="u-btn btn-xs">指定分类</a>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+			</table>
+			{$page}
+	    </div>
+	    
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="#">指定店铺分类</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex">
+
+	    	<div class="formbody">
+    			<form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+
+			    <div class="formtitle"><span>店铺分类选择</span></div>
+			    
+			    <ul class="forminfo">
+			    	<input type="hidden" name="rel_model" value="supplier_location">
+			    	<input type="hidden" name="rel_model_id" value="<?php echo $_GET['id']; ?>">
+
+			    <li><label>功能块</label>
+			    	<select class="form-control dfinput" name="app_id">
+			    		<option value="0">请选择</option>
+					  <?php foreach ($alist as $key => $value): ?>
+					  	<option value="<?php echo $value['id']; ?>"><?php echo $value['app_name']; ?></option>
+					  <?php endforeach; ?>
+					</select>
+			    	<i></i></li>
+
+		    	<li><label>功能子分类</label>
+		    	<select class="form-control dfinput" name="type_id">
+		    		<option value="0">请选择</option>
+				</select>
+		    	<i></i></li>
+
+		    	<li><label>搜索关键字</label><input name="keyword" placeholder="" type="text" class="dfinput" /><i>提高被搜索到的几率</i></li>
+
+			    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/>
+			    <input type="reset" class="btn btn-danger" value="重 置"></li>
+			    
+			    </ul>
+			    </form>
+			    
+			    </div>
+
+	    </div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("select[name=app_id]").change(function(event) {
+			var app_id = $(this).val();
+			if (app_id != 0) {
+				$.get('/index.php?m=Businessmanage&a=getTypes&app_id='+app_id, function(data) {
+					var dlist = eval(data);
+					var html = '';
+					for (var i = dlist.length - 1; i >= 0; i--) {
+						html += '<option value="'+dlist[i]['id']+'">'+dlist[i]['type_name']+'</option>';
+					}
+					$('select[name=type_id]').html(html);
+				});
+			}
+		});
+	});
+</script>
+</body>
+
+</html>
+
+

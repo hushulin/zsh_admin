@@ -1,0 +1,71 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="#">商家信息</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex" style="width:80%;position:relative;left:-100px;">
+	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
+	    	<a href="/index.php?m=Businessmanage&a=addBusiness" class="u-btn btn-xs">新增商家账号</a>
+	    	<br><br>
+	    	<table class="m-table">
+			<thead>
+				<tr>
+					<th style="width:40px;">编号</th>
+					<th>商家账户名</th>
+					<th>最后登录时间</th>
+					<th>最后登录IP</th>
+					<th>是否有效</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($list as $key => $value): ?>
+					<tr>
+						<td><?php echo $value['id']; ?></td>
+						<td><?php echo $value['adm_name']; ?></td>
+						<td>
+							<?php echo date('Y-m-d H:i:s',$value['login_time']); ?>
+						</td>
+						<td><?php echo $value['login_ip']; ?></td>
+						<td><?php if ($value['is_effect'] == 1): ?>
+							有效
+						<?php else: ?>
+							无效
+						<?php endif; ?></td>
+						<td>
+							<!-- <a href="/index.php?m=Dfff&a=edit_appff&id={$value['id']}" class="u-btn btn-xs">编辑</a> -->
+							<a href="#" class="u-btn btn-xs">删除</a>
+							<a href="/index.php?m=Businessmanage&a=seelocation&id={$value['id']}" class="u-btn btn-xs">查看店铺</a>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+			</table>
+			{$page}
+	    </div>
+	    
+</div>
+
+</body>
+
+</html>

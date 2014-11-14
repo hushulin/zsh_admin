@@ -1,0 +1,44 @@
+<script type="text/javascript">
+$(function(){	
+	//导航切换
+	$(".menuson li").click(function(){
+		$(".menuson li.active").removeClass("active")
+		$(this).addClass("active");
+	});
+	
+	$('.title').click(function(){
+		var $ul = $(this).next('ul');
+		$('dd').find('ul').slideUp();
+		if($ul.is(':visible')){
+			$(this).next('ul').slideUp();
+		}else{
+			$(this).next('ul').slideDown();
+		}
+	});
+})	
+</script>
+<dl class="leftmenu" style="position:absolute;top:88px;">
+    
+<dd>
+<div class="title">
+<span><img src="__TMPL__Common/images/leftico01.png" /></span>控制台
+</div>
+	<ul class="menuson">
+    <?php foreach ($estatemenu1 as $key => $vo): ?>
+		<?php if (strstr($vo['url'], MODULE_NAME)): ?>
+			<?php foreach ($vo['below_menu'] as $key => $value): ?>
+				<?php if ($_SERVER['REQUEST_URI'] == $value['url'].'&' || $_SERVER['REQUEST_URI'] == $value['url']): ?>
+					
+					<li class="active"><cite></cite><a href="<?php echo $value['url']; ?>"><?php echo $value['title']; ?></a><i></i></li>
+				<?php else: ?>
+					
+					<li><cite></cite><a href="<?php echo $value['url']; ?>"><?php echo $value['title']; ?></a><i></i></li>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	<?php endforeach; ?>
+    </ul>    
+</dd>
+
+</dl>
+

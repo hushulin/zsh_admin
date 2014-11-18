@@ -10,6 +10,7 @@
 //后台验证的基础类
 
 class AuthAction extends BaseAction{
+	var $aid;
 	public function __construct()
 	{
 		parent::__construct();
@@ -33,6 +34,7 @@ class AuthAction extends BaseAction{
 		$adm_session = es_session::get(md5(conf("AUTH_KEY")));
 		$adm_name = $adm_session['adm_name'];
 		$adm_id = intval($adm_session['adm_id']);
+		$this->aid = $adm_id;
 		$ajax = intval($_REQUEST['ajax']);
 		$biz_account = es_session::get("account_info");
 		$is_auth = 0;

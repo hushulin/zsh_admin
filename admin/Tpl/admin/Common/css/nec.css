@@ -85,3 +85,76 @@
 .u-btn-c4:hover,.u-btn-c4:focus{background:#e7e7e7;}
 .u-btn-c4 .btnsel{border-top-color:rgba(0,0,0,0.6);}
 .u-btn-c4:hover .btnsel,.u-btn-c4:focus .btnsel{border-top-color:rgba(0,0,0,1);}
+
+./* 操作型弹出浮层-默认居中 */
+.m-layer,.m-layer .lymask{top:0;left:0;width:100%;height:100%;}
+.m-layer{display:none;position:fixed;_position:absolute;z-index:999;}
+.m-layer .lymask{position:absolute;background:#000;opacity:0.6;filter:alpha(opacity=60);}
+.m-layer .lytable{table-layout:fixed;width:100%;height:100%;}
+.m-layer .lytd{width:100%;height:100%;vertical-align:middle;}
+.m-layer .lywrap{position:relative;width:400px;margin:0 auto;border:5px solid #aaa;border:5px solid rgba(0,0,0,0.3);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.2);}
+.m-layer .lytt{position:relative;padding:10px;height:20px;margin:0 0 -1px;line-height:20px;border-bottom:1px solid #ddd;border-radius:5px 5px 0 0;background:#fafafa;}
+.m-layer .lytt h2{float:left;font-size:16px;}
+.m-layer .lyclose{float:right;font-weight:bold;font-family:arial;font-size:24px;_font-size:16px;color:#ccc;text-shadow:0 1px #fff;cursor:pointer;}
+.m-layer .lyclose:hover{color:#aaa;}
+.m-layer .lyct:last-child,.m-layer .lybt{border-bottom-right-radius:5px;border-bottom-left-radius:5px;}
+.m-layer .lyct:first-child{border-top-left-radius:5px;border-top-right-radius:5px;}
+.m-layer .lyct{padding:20px;background:#fff;}
+.m-layer .lybt{height:30px;line-height:30px;padding:10px;margin:-1px 0 0;border-top:1px solid #ddd;background:#f7f7f7;}
+.m-layer .lyother{float:left;color:#999;}
+.m-layer .lybtns{float:right;}
+.m-layer .lybtns button{float:left;margin-left:10px;}
+/* 显示 */
+.m-layer-show{display:block;}
+
+/* 文本输入框 */
+.u-ipt{width:180px;padding:5px;height:17px;border:1px solid #D9D9D9;border-top-color:#c0c0c0;line-height:17px;font-size:14px;color:#777;background:#fff;}
+/* 文本输入框-窄 */
+.u-ipt-1{width:90px;}
+/* 文本输入框-出错 */
+.u-ipt-err{border-color:#c00 #e00 #e00;}
+
+/* 简易表单 */
+.m-form{line-height:29px;color:#555;}
+.m-form legend{font-size:14px;font-weight:bold;}
+.m-form .formitm{padding:20px 0 0;line-height:30px;}
+.m-form .formitm-1{padding-left:100px;}
+.m-form .lab{float:left;width:90px;margin-right:-90px;text-align:right;font-weight:bold;}
+.m-form .ipt{margin-left:100px;}
+.m-form .ipt *{vertical-align:middle;}
+.m-form .ipt a,.m-form .ipt a:hover{text-decoration:none;color:#3891eb;}
+.m-form .ipt img{height:32px;margin:0 15px 0 5px;}
+.m-form .ipt .domain{margin:0 0 0 5px;font-weight:bold;color:#777;}
+.m-form .ipt p{height:22px;line-height:22px;color:#999;}
+.m-form .tip{padding-top:10px;}
+.m-form .tip input{margin:0 5px 3px 0;}
+
+/* 含标题和Tab的模块头部-默认不定宽 */
+.m-hd{height:35px;line-height:35px;padding:1px 0 0;border-bottom:1px solid #ddd;}
+.m-hd h2,.m-hd ul,.m-hd li{float:left;display:inline;}
+.m-hd h2{margin:0 20px 0 0;font-size:16px;}
+.m-hd ul{margin-left:-2px;}
+.m-hd li{position:relative;margin:-1px 0 0 2px;}
+.m-hd li a,.m-hd li a:hover{text-decoration:none;color:#666;}
+.m-hd li a{float:left;padding:0 15px;border:1px solid #ddd;border-bottom:0;border-radius:5px 5px 0 0;text-align:center;font-size:14px;background:#f8f8f8;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#fdfdfd),to(#f8f8f8));background:-webkit-linear-gradient(#fdfdfd,#f8f8f8);background:-moz-linear-gradient(#fdfdfd,#f8f8f8);background:-ms-linear-gradient(#fdfdfd,#f8f8f8);background:linear-gradient(#fdfdfd,#f8f8f8);}
+.m-hd li a:hover{background:#fff;}
+.m-hd li.z-crt a{position:relative;padding-bottom:1px;margin-bottom:-1px;background:#fff;}
+.m-hd .more{float:right;margin-left:10px;}
+/* 有背景 */
+.m-hd-bg{padding:11px 10px 0;border-radius:5px 5px 0 0;background:#f7f7f7;}
+/* tab无缝 */
+.m-hd-sl li{margin-left:-1px;}
+.m-hd-sl li a{border-radius:0;}
+.m-hd-sl li:first-child a{border-top-left-radius:5px;}
+.m-hd-sl li:last-child a{border-top-right-radius:5px;}
+/* tab居右 */
+.m-hd-rt h2{margin-right:0;}
+.m-hd-rt ul{float:right;}
+/* tab较小 */
+.m-hd-sm{height:25px;line-height:25px;}
+.m-hd-sm h2{font-size:14px;}
+.m-hd-sm li a{padding:0 10px;font-size:12px;}
+/* tab定宽 */
+.m-hd-fw li a{width:78px;padding:0;}
+/* tab直角 */
+.m-hd-ra,.m-hd-ra li a,.m-hd-ra li:first-child a,.m-hd-ra li:last-child a{border-radius:0;}

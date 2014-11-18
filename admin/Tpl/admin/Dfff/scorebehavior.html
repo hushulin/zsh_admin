@@ -19,54 +19,52 @@
 	<div class="place" style="height:36px;">
 	    <span>位置：</span>
 	    <ul class="placeul">
-	    <li><a href="javascript:;">推送统计</a></li>
+	    <li><a href="#">行为配置</a></li>
 	    </ul>
 	    </div>
 	    
 	    <div class="mainindex">
 	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
+	    	<a href="{:U('addscorebehavior');}" class="u-btn">添加行为</a><br><br>
+
 	    	<table class="m-table">
 	    	    <thead>
 	    	        <tr>
-	    	        	<th style="width:20px;">编号</th>
-	    	        	<th style="width:100px;">标题</th>
-	    	        	<th style="width:150px;">内容</th>
-	    	        	<th style="width:30px;">业务代码</th>
-	    	        	<th style="width:50px;">是否已发</th>
-	    	        	<th style="width:50px;">是否已读</th>
-	    	        	<th style="width:50px;">接收者</th>
-	    	        	<th style="width:100px;">创建时间</th>
+	    	        	<th>ID</th>
+	    	        	<th>行为名称</th>
+	    	        	<th style="width:400px;">描述</th>
+	    	        	<th>获得积分</th>
+	    	        	<th>状态</th>
+	    	        	<th>操作</th>
 	    	        </tr>
 	    	    </thead>
 	    	    <tbody>
 	    	    	<volist name="list" id="vo">
 		    	        <tr>
 		    	        	<td>{$vo.id}</td>
-		    	        	<td>{$vo.title}</td>
-		    	        	<td>{$vo.content}</td>
-		    	        	<td>{$vo.code}</td>
+		    	        	<td>{$vo.behavior_name}</td>
+		    	        	<td>{$vo.desc}</td>
+		    	        	<td>{$vo.score}</td>
 		    	        	<td>
-		    	        		<?php if ($vo['is_send'] == 0 || empty($vo['is_send'])): ?>
-		    	        			未发送
+		    	        		<?php if ($vo['status'] == 1): ?>
+		    	        			启用
 		    	        		<?php else: ?>
-		    	        			已发送
+		    	        			停用
 		    	        		<?php endif; ?>
 		    	        	</td>
 		    	        	<td>
-		    	        		<?php if ($vo['is_read'] == 0 || empty($vo['is_read'])): ?>
-		    	        			未读取
-		    	        		<?php else: ?>
-		    	        			已读取
-		    	        		<?php endif; ?>
+		    	        		<a href="{:U('delbehavior',array('id'=>$vo['id']));}" class="u-btn u-btn-c3">删除该行为</a>
 		    	        	</td>
-		    	        	<td>{$vo.to_name}</td>
-		    	        	<td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
 		    	        </tr>
 		    	    </volist>
+
 	    	    </tbody>
 	    	</table>
+	    	<br>
 	    	{$page}
 	    </div>
 </div>
+
 </body>
+
 </html>

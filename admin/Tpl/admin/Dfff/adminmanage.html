@@ -19,21 +19,22 @@
 	<div class="place" style="height:36px;">
 	    <span>位置：</span>
 	    <ul class="placeul">
-	    <li><a href="#">API接口管理</a></li>
+	    <li><a href="#">管理员账号管理</a></li>
 	    </ul>
 	    </div>
 	    
 	    <div class="mainindex">
 	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
-	    	<a href="{:U('addapi');}" class="u-btn">添加API接口</a><br><br>
+	    	<a href="{:U('addadmin');}" class="u-btn">添加管理员</a><br><br>
 
 	    	<table class="m-table">
 	    	    <thead>
 	    	        <tr>
 	    	        	<th>ID</th>
-	    	        	<th>接口名</th>
-	    	        	<th style="width:400px;">接口地址</th>
-	    	        	<th>状态</th>
+	    	        	<th>登录名</th>
+	    	        	<th>上次登录时间</th>
+	    	        	<th>上次登录IP</th>
+	    	        	<th>手机号</th>
 	    	        	<th>操作</th>
 	    	        </tr>
 	    	    </thead>
@@ -41,17 +42,12 @@
 	    	    	<volist name="list" id="vo">
 		    	        <tr>
 		    	        	<td>{$vo.id}</td>
-		    	        	<td>{$vo.name}</td>
-		    	        	<td>{$vo.url}</td>
+		    	        	<td>{$vo.adm_name}</td>
+		    	        	<td>{$vo.login_time|date="Y-m-d H:i",###}</td>
+		    	        	<td>{$vo.login_ip}</td>
+		    	        	<td>{$vo.phone}</td>
 		    	        	<td>
-		    	        		<?php if ($vo['status'] == 1): ?>
-		    	        			启用
-		    	        		<?php else: ?>
-		    	        			停用
-		    	        		<?php endif; ?>
-		    	        	</td>
-		    	        	<td>
-		    	        		<a href="{:U('delapi',array('id'=>$vo['id']));}" class="u-btn u-btn-c3">删除该接口</a>
+		    	        		<a href="{:U('deladmin',array('id'=>$vo['id']));}" class="u-btn u-btn-c3">删除该管理员</a>
 		    	        	</td>
 		    	        </tr>
 		    	    </volist>

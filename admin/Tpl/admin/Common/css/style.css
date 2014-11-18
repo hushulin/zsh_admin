@@ -131,7 +131,7 @@ h2{font-weight:normal;}
 .pagenxt{background:url(../images/next.gif) no-repeat center center; width:31px; height:28px;}
 
 /*index*/
-.mainindex{padding:20px; overflow:hidden;}
+.mainindex{padding:20px; overflow:hidden;width:80%;position:relative;left:-120px;}
 .welinfo{height:32px; line-height:32px; padding-bottom:8px;}
 .welinfo span{float:left;}
 .welinfo b{padding-left:8px;}

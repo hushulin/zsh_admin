@@ -1,0 +1,81 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="javascript:;">信息推送</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex">
+	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
+	    	
+	    	<div class="m-form">
+	    	    <form name="" method="post">
+	    	        <fieldset>
+	    	            <legend>新增信息模板</legend>
+	    	            <div class="formitm">
+	    	                <label class="lab">标题：</label>
+	    	                <div class="ipt">
+	    	                    <input type="text" class="u-ipt" name="title"/>
+	    	                    <p>不能超过20个字符</p>
+	    	                </div>
+	    	            </div>
+	    	            <div class="formitm">
+	    	                <label class="lab">内容：</label>
+	    	                <div class="ipt">
+	    	                    <textarea style="width:500px;height:300px;border:1px solid #C0C0C0;" name="content"></textarea>
+	    	                </div>
+	    	            </div>
+	    	            <div class="formitm">
+	    	                <label class="lab">是否适应安卓：</label>
+	    	                <div class="ipt">
+	    	                    <select name="is_android" class="dfinput">
+	    	                    	<option value="1">是</option>
+	    	                    	<option value="0">否</option>
+	    	                    </select>
+	    	                </div>
+	    	            </div>
+	    	            <div class="formitm">
+	    	                <label class="lab">是否适应IOS：</label>
+	    	                <div class="ipt">
+	    	                    <select name="is_ios" class="dfinput">
+	    	                    	<option value="1">是</option>
+	    	                    	<option value="0">否</option>
+	    	                    </select>
+	    	                </div>
+	    	            </div>
+	    	            <div class="formitm">
+	    	                <label class="lab">是否适应短信：</label>
+	    	                <div class="ipt">
+	    	                    <select name="is_sms" class="dfinput">
+	    	                    	<option value="1">是</option>
+	    	                    	<option value="0">否</option>
+	    	                    </select>
+	    	                </div>
+	    	            </div>
+	    	            <div class="formitm formitm-1"><button class="u-btn" type="submit">立即添加</button></div>
+	    	        </fieldset>
+	    	    </form>
+	    	</div>
+	    </div>
+</div>
+
+</body>
+</html>

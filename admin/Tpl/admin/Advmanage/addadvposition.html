@@ -25,7 +25,7 @@ KE.show({
 	<div class="place" style="height:36px;">
 	    <span>位置：</span>
 	    <ul class="placeul">
-	    <li><a href="#">添加内容</a></li>
+	    <li><a href="#">添加广告位</a></li>
 	    </ul>
 	    </div>
 	    
@@ -33,34 +33,31 @@ KE.show({
 		  <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" >
 		    	<div class="formbody">
 	    
-				    <div class="formtitle"><span>添加内容</span></div>
+				    <div class="formtitle"><span>添加广告位</span></div>
 
 				  
 				    <ul class="forminfo">
+				    	<li><label>广告位名称</label><input name="name" placeholder="" value="{$redpaper.name}"  type="text" maxlength="128" class="dfinput" /><i>标题不能超过128个字符</i></li>
 				    	<li>
-				    		<label>店铺</label>
-				    		<select name="shop_id" class="dfinput">
-				    			<volist name="shop_list" id="vo">
-					    			<option value="{$vo.id}">{$vo.name|default='暂无店名'}</option>
-					    		</volist>
-				    		</select>
+				    		<label>宽度</label>
+				    		<input type="number" name="width" class="dfinput"><i>px</i>
 				    	</li>
-				    	<li><label>商品名称</label><input name="good_name" placeholder="" value=""  type="text" maxlength="128" class="dfinput" /><i>标题类不能超过128个字符</i></li>
-
-				    	<li><label>价格</label><input name="price" placeholder="" value=""  type="text" maxlength="128" class="dfinput" /><i>元</i></li>
-
 				    	<li>
-				    		<label>上传图片</label>
-				    		<input type="file" name="good_photo" class="dfinput"/>
+				    		<label>高度</label>
+				    		<input type="number" name="height" class="dfinput"><i>px</i>
 				    	</li>
 
-				    	<li><label>商品描述</label><textarea name="brief" id="remark" cols="" rows="" class="textinput"></textarea></li>
+			    <li><label>所属模块</label><input name="model" value="{$redpaper.use_limit}" placeholder="" type="text" class="dfinput" /><i></i></li>
 
-				    	<li>
-				    		<label>标签</label>
-				    		<input type="text" name="custom_cate_str" class="dfinput"/>
-				    	</li>
+			    <li><label>状态</label>
+			    	<select class="form-control dfinput" name="status">
+			    		  	<option value="1" <?php echo ($redpaper[genus]==1)?'selected=selected':'' ?> >启用</option>
+			    		  	<option value="0" <?php echo ($redpaper[genus]==2)?'selected=selected':'' ?> >不启用</option>
+					</select>
+			    </li>
+				
 
+			    <li><label>广告位介绍</label><textarea name="desc" id="remark" cols="" rows="" class="textinput">{$redpaper.remark}</textarea></li>
 			   
 				    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认添加"/></li>
 				    </ul>

@@ -662,4 +662,9 @@ function show_ke_image($id,$cnt="")
 						
 }
 
+function getArea2($id='')
+{
+	return D('AreaNew')->where("`id` = {$id}")->getField('name');
+}
+
 ?>

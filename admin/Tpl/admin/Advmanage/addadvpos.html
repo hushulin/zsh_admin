@@ -1,0 +1,80 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+<script src="__TMPL__Common/editor/kindeditor.js" type="text/javascript"></script>
+<script type="text/javascript">
+KE.show({
+    id : 'remark' //TEXTAREA输入框的ID
+});
+</script>
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="#">添加广告</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex">
+		  <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" >
+		    	<div class="formbody">
+	    
+				    <div class="formtitle"><span>添加广告</span></div>
+
+				  
+				    <ul class="forminfo">
+				    	<li>
+				    		<label>广告位</label>
+				    		<select name="adv_id" class="dfinput">
+				    			<volist name="adv_position" id="vo">
+				    				<option value="{$vo.id}">{$vo.name|default='无名'}({$vo.width}*{$vo.height})</option>
+				    			</volist>
+				    		</select>
+				    	</li>
+				    	<li><label>标题</label><input name="name" placeholder="" value="{$redpaper.name}"  type="text" maxlength="128" class="dfinput" /><i>标题不能超过128个字符</i></li>
+
+				    	<li><label>摘要</label><input name="tmpl" placeholder="" value="{$redpaper.name}"  type="text" maxlength="128" class="dfinput" /><i></i></li>
+
+				    	<li><label>外链</label><input name="url" placeholder="" value="{$redpaper.name}"  type="text" maxlength="128" class="dfinput" /><i></i></li>
+				    	
+			    		<li>
+			    			<label>上传图片</label>
+			    			<input type="file" name="img" class="dfinput" />
+			    		</li>
+
+			    <li><label>状态</label>
+			    	<select class="form-control dfinput" name="is_effect">
+			    		  	<option value="1" <?php echo ($redpaper[genus]==1)?'selected=selected':'' ?> >启用</option>
+			    		  	<option value="0" <?php echo ($redpaper[genus]==2)?'selected=selected':'' ?> >不启用</option>
+					</select>
+			    </li>
+				
+
+			    <li><label>描述</label><textarea name="code" id="remark" cols="" rows="" class="textinput">{$redpaper.remark}</textarea></li>
+			   
+				    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认添加"/></li>
+				    </ul>
+				    
+				    
+				    </div>
+				</form>
+	    </div>
+</div>
+
+</body>
+
+</html>

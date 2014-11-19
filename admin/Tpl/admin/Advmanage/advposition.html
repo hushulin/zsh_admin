@@ -19,24 +19,24 @@
 	<div class="place" style="height:36px;">
 	    <span>位置：</span>
 	    <ul class="placeul">
-	    <li><a href="#">发放红包</a></li>
+	    <li><a href="#">广告位管理</a></li>
 	    </ul>
 	    </div>
 	    
 	    <div class="mainindex">
 	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
-	    	<a href="{:U('addredpaper');}" class="u-btn">添加红包</a><br><br>
+	    	<a href="{:U('addadvposition');}" class="u-btn">添加广告位管理</a><br><br>
 
 	    	<table class="m-table">
 	    	    <thead>
 	    	        <tr>
-	    	        	<th>ID</th>
-	    	        	<th>红包名</th>
-	    	        	<th>发放总数</th>
-	    	        	<th>开始时间</th>
-	    	        	<th>结束时间</th>
-	    	        	<th>优惠额度</th>
-	    	        	<th>发放对象</th>
+	    	        	<th style="width:50px;">ID</th>
+	    	        	<th>广告位名称</th>
+	    	        	<th>宽度</th>
+	    	        	<th>高度</th>
+	    	        	<th>所属模块</th>
+	    	        	<th>广告位简介</th>
+	    	        	<th>创建时间</th>
 	    	        	<th>状态</th>
 	    	        	<th style="width:150px;">操作</th>
 	    	        </tr>
@@ -46,27 +46,22 @@
 		    	        <tr>
 		    	        	<td>{$vo.id}</td>
 		    	        	<td>{$vo.name}</td>
-		    	        	<td>{$vo.use_limit}</td>
-		    	        	<td>{$vo.begin_time|date="Y-m-d H:i",###}</td>
-		    	        	<td>{$vo.end_time|date="Y-m-d H:i",###}</td>
-		    	        	<td>{$vo.point}</td>
+		    	        	<td>{$vo.width} px</td>
+		    	        	<td>{$vo.height} px</td>
+		    	        	<td>{$vo.model}</td>
+		    	        	<td>{$vo.desc}</td>
+		    	        	<td>{$vo.create_time|date="Y-m-d H:i",###}</td>
 		    	        	<td>
-		    	        		<?php if ($vo['type'] == 1): ?>
-		    	        			发商家
-		    	        		<?php elseif($vo['type'] == 2): ?>
-		    	        			发用户
+		    	        		<?php if ($vo['status'] == 1): ?>
+		    	        			启用
+		    	        		<?php elseif($vo['status'] == 0): ?>
+		    	        			未启用
 		    	        		<?php endif; ?>
 		    	        	</td>
+		    	        	
 		    	        	<td>
-		    	        		<?php if ($vo['status'] == 0): ?>
-		    	        			未发放
-		    	        		<?php elseif($vo['status'] == 1): ?>
-		    	        			已发放
-		    	        		<?php endif; ?>
-		    	        	</td>
-		    	        	<td>
-		    	        		<a href="{:U('delredpaper',array('id'=>$vo['id']));}" class="u-btn u-btn-c3">删除</a>
-		    	        		<a href="{:U('pushredpaper',array('id'=>$vo['id']));}" class="u-btn u-btn-c3">发放</a>
+		    	        		<a href="{:U('deladvposition',array('id'=>$vo['id']));}" class="u-btn u-btn-c3">删除</a>
+		    	        		<a href="{:U('',array('id'=>$vo['id']));}" class="u-btn u-btn-c3">添加广告</a>
 		    	        	</td>
 		    	        </tr>
 		    	    </volist>

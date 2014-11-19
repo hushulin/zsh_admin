@@ -1,0 +1,70 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="#">行为配置</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex">
+	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
+	    	<a href="{:U('addscorebehavior');}" class="u-btn">添加行为</a><br><br>
+
+	    	<table class="m-table">
+	    	    <thead>
+	    	        <tr>
+	    	        	<th>ID</th>
+	    	        	<th>行为名称</th>
+	    	        	<th style="width:400px;">描述</th>
+	    	        	<th>获得积分</th>
+	    	        	<th>状态</th>
+	    	        	<th>操作</th>
+	    	        </tr>
+	    	    </thead>
+	    	    <tbody>
+	    	    	<volist name="list" id="vo">
+		    	        <tr>
+		    	        	<td>{$vo.id}</td>
+		    	        	<td>{$vo.behavior_name}</td>
+		    	        	<td>{$vo.desc}</td>
+		    	        	<td>{$vo.score}</td>
+		    	        	<td>
+		    	        		<?php if ($vo['status'] == 1): ?>
+		    	        			启用
+		    	        		<?php else: ?>
+		    	        			停用
+		    	        		<?php endif; ?>
+		    	        	</td>
+		    	        	<td>
+		    	        		<a href="{:U('delbehavior',array('id'=>$vo['id']));}" class="u-btn u-btn-c3">删除该行为</a>
+		    	        	</td>
+		    	        </tr>
+		    	    </volist>
+
+	    	    </tbody>
+	    	</table>
+	    	<br>
+	    	{$page}
+	    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="#">发放红包</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex">
+	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
+	    	<a href="{:U('addredpaper');}" class="u-btn">添加红包</a><br><br>
+
+	    	<table class="m-table">
+	    	    <thead>
+	    	        <tr>
+	    	        	<th>ID</th>
+	    	        	<th>红包名</th>
+	    	        	<th>发放总数</th>
+	    	        	<th>开始时间</th>
+	    	        	<th>结束时间</th>
+	    	        	<th>优惠额度</th>
+	    	        	<th>发放对象</th>
+	    	        	<th>状态</th>
+	    	        	<th style="width:150px;">操作</th>
+	    	        </tr>
+	    	    </thead>
+	    	    <tbody>
+	    	    	<volist name="list" id="vo">
+		    	        <tr>
+		    	        	<td>{$vo.id}</td>
+		    	        	<td>{$vo.name}</td>
+		    	        	<td>{$vo.use_limit}</td>
+		    	        	<td>{$vo.begin_time|date="Y-m-d H:i",###}</td>
+		    	        	<td>{$vo.end_time|date="Y-m-d H:i",###}</td>
+		    	        	<td>{$vo.point}</td>
+		    	        	<td>
+		    	        		<?php if ($vo['type'] == 1): ?>
+		    	        			发商家
+		    	        		<?php elseif($vo['type'] == 2): ?>
+		    	        			发用户
+		    	        		<?php endif; ?>
+		    	        	</td>
+		    	        	<td>
+		    	        		<?php if ($vo['status'] == 0): ?>
+		    	        			未发放
+		    	        		<?php elseif($vo['status'] == 1): ?>
+		    	        			已发放
+		    	        		<?php endif; ?>
+		    	        	</td>
+		    	        	<td>
+		    	        		<a href="{:U('delredpaper',array('id'=>$vo['id']));}" class="u-btn u-btn-c3">删除</a>
+		    	        		<a href="{:U('pushredpaper',array('id'=>$vo['id']));}" class="u-btn u-btn-c3">发放</a>
+		    	        	</td>
+		    	        </tr>
+		    	    </volist>
+
+	    	    </tbody>
+	    	</table>
+	    	<br>
+	    	{$page}
+	    </div>
+</div>
+
+</body>
+
+</html>

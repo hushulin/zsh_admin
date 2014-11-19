@@ -1,0 +1,70 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="javascript:;">信息推送</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex">
+	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
+	    	
+	    	<div class="m-form">
+	    	    <form name="" method="post">
+	    	        <fieldset>
+	    	            <legend>准备要推送的消息</legend>
+	    	            <div class="formitm">
+	    	                <label class="lab">推送给：</label>
+	    	                <div class="ipt">
+	    	                    <volist name="users" id="vo"><input type="checkbox" name="users[{$vo.id}]"> {$vo.user_name} &nbsp;&nbsp;&nbsp;</volist>
+
+	    	                </div>
+	    	            </div>
+	    	            <div class="formitm">
+	    	                <label class="lab">推送方式：</label>
+	    	                <div class="ipt">
+	    	                    <select class="dfinput">
+	    	                    	<option>全部</option>
+	    	                    	<option>Android</option>
+	    	                    	<option>IOS</option>
+	    	                    	<option>短信</option>
+	    	                    </select>
+	    	                </div>
+	    	            </div>
+	    	            <div class="formitm">
+	    	                <label class="lab">业务类型：</label>
+	    	                <div class="ipt">
+	    	                    <select name="code" class="dfinput">
+	    	                    	<option value="4001">物业处理</option>
+	    	                    	<option value="5001">店铺发货通知</option>
+	    	                    	<option value="3001">系统通知</option>
+	    	                    	<option value="8001">用户私信</option>
+	    	                    </select>
+	    	                </div>
+	    	            </div>
+	    	            <div class="formitm formitm-1"><button class="u-btn" type="submit">立即推送</button></div>
+	    	        </fieldset>
+	    	    </form>
+	    	</div>
+	    </div>
+</div>
+
+</body>
+</html>

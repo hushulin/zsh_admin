@@ -1,0 +1,51 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="#">新增API接口</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex">
+		  <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" >
+		    	<div class="formbody">
+	    
+				    <div class="formtitle"><span>新增API接口</span></div>
+
+				  
+				    <ul class="forminfo">
+				    <li><label>接口名</label><input name="name" placeholder="" type="text" class="dfinput" /><i>不能超过10个字符</i></li>
+
+				    <li><label>接口地址</label>
+					    <input type="text" name="url" id="app_icon" value="" class="dfinput">
+					</li>
+					<li><label>启用与非启用</label><input name="status" placeholder="" type="text" class="dfinput" /><i>启用填1，非启用填0</i></li>
+				    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认添加"/></li>
+				    </ul>
+				    
+				    
+				    </div>
+				</form>
+	    </div>
+</div>
+
+</body>
+
+</html>

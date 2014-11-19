@@ -1,0 +1,54 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="#">新增应用</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex">
+		  <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" >
+		    	<div class="formbody">
+	    
+				    <div class="formtitle"><span>新增应用</span></div>
+
+				  
+				    <ul class="forminfo">
+				    <li><label>功能名</label><input name="app_name" placeholder="" type="text" class="dfinput" /><i>不能超过10个字符</i></li>
+
+				    <li><label>功能图标</label>
+					    <input type="file" name="app_icon" id="app_icon" value="">
+					</li>
+				    <li><label>排序</label><input name="sort" placeholder="" type="text" class="dfinput" /><i></i></li>
+				    <li><label>分类</label><input name="category" placeholder="" type="text" class="dfinput" /><i>(1代表上面2代表下面)</i></li>
+				    <li><label>产品或服务</label><input name="type" placeholder="" type="text" class="dfinput" /><i>(1服务2产品)</i></li>
+				   
+				    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认添加"/></li>
+				    </ul>
+				    
+				    
+				    </div>
+				</form>
+	    </div>
+</div>
+
+</body>
+
+</html>

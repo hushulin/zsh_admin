@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1A5IhVw7du1E3ngGTrmpEpCw"></script>
+	<title>附近商家</title>
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript" src="__TMPL__Common/js/jquery.js"></script>
+<script type="text/javascript">
+	// map实例
+	var map = new BMap.Map("allmap");
+
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r){
+		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			var mk = new BMap.Marker(r.point);
+			map.addOverlay();
+			map.panTo(r.point);
+			var clientW = $('body').width();
+			var clientH = $('body').height();
+			var p=new BMap.Pixel(clientW/4,clientH/4); 
+			var point1=map.pixelToPoint(p); 
+			
+			$(window.parent.document).find('input[name=lng]').val(point1.lng);
+		   	$(window.parent.document).find('input[name=lat]').val(point1.lat);
+		   	var geoc = new BMap.Geocoder();
+		   	geoc.getLocation(point1, function(rs){
+				var addComp = rs.addressComponents;
+				var dd = addComp.province+ addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+			   	$(window.parent.document).find('input[name=address]').val(dd);
+			   });
+			addMarkerCustom(point1,true);
+			// addMarker(point);
+			// $.post('{:U("/Mobile/Map/get_shop");}', {'Lat':r.point.lat, 'Lng':r.point.lng}, function(data, textStatus, xhr) {
+			// 	var e = eval(data);
+			// 	var e = e['data'];
+			// 	for (var i = e.length - 1; i >= 0; i--) {
+			// 		var point = new BMap.Point(e[i]['lng'],e[i]['lat']);
+			// 		addMarker(point,e[i]['name'],e[i]['description'],false,e[i]['id'],e[i]['adress'],e[i]['phone']);
+			// 	}
+			// });
+		}
+		else {
+			alert('失败：'+this.getStatus());
+		}
+	},{enableHighAccuracy: true});
+
+
+
+
+	// if (navigator.geolocation) {
+	// 	navigator.geolocation.getCurrentPosition(function(position) {
+	// 		// alert(position.coords.latitude);
+ //      		map.centerAndZoom(new BMap.Point(position.coords.latitude, position.coords.longitude), 13);
+	// 		map.enableScrollWheelZoom();
+ //    }, function() {
+ //      handleNoGeolocation(true);
+ //    });
+	// } else {
+	// 	handleNoGeolocation(true);
+	// }
+	map.centerAndZoom(new BMap.Point(113.057648, 28.141722), 13);
+	map.enableScrollWheelZoom();
+
+	// 编写自定义函数,创建标注
+	function addMarker(point,title,content,canmove,id,address,phone){
+		var myIcon = new BMap.Icon("__TMPL__Common/remark_set.png", new BMap.Size(20, 32));
+
+	  var marker = new BMap.Marker(point,{icon:myIcon});
+	  // var marker = new BMap.Marker(point);
+	  map.addOverlay(marker);
+	  if (canmove) {
+	  	marker.enableDragging();
+	  } else{
+	  	marker.disableDragging();
+	  }
+	  // marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+	  var opts = {
+		  'width' : 200,     // 信息窗口宽度
+		  'height': 100,     // 信息窗口高度
+		  'title' : '<b onclick="javascript:showShopById(\''+id+'\',\''+title+'\',\''+address+'\',\''+content+'\',\''+phone+'\');">'+title+'</b>' , // 信息窗口标题
+		  'enableMessage': false,//设置允许信息窗发送短息
+		  'message': 'message'
+		}
+		var infoWindow = new BMap.InfoWindow(content+"<br/>"+address+"<br/>"+phone, opts);  // 创建信息窗口对象 
+		marker.addEventListener("click", function(){      
+			// alert(marker.point.lat);
+			// alert(marker.point.lng);
+			map.openInfoWindow(infoWindow, marker.point); //开启信息窗口
+		});
+	}
+
+	function addMarkerCustom(point,canmove){
+		var myIcon = new BMap.Icon("__TMPL__Common/remark.png", new BMap.Size(20, 32));
+
+	  var marker = new BMap.Marker(point,{icon:myIcon});
+	  // var marker = new BMap.Marker(point);
+	  map.addOverlay(marker);
+	  if (canmove) {
+	  	marker.enableDragging();
+	  } else{
+	  	marker.disableDragging();
+	  }
+	  // marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+	 //  var opts = {
+		//   'width' : 200,     // 信息窗口宽度
+		//   'height': 100,     // 信息窗口高度
+		//   'title' : '<b onclick="javascript:saveRemark('+marker.point.lat+', '+marker.point.lng+');">添加标注</b>' , // 信息窗口标题
+		//   'enableMessage': false,//设置允许信息窗发送短息
+		//   'message': 'message'
+		// }
+		// var infoWindow = new BMap.InfoWindow('<div onclick="javascript:saveRemark('+marker.point.lat+', '+marker.point.lng+');">移动到合适位置点击标注</div>', opts);  // 创建信息窗口对象 
+		// map.openInfoWindow(infoWindow, marker.point); //开启信息窗口
+		// marker.addEventListener("click", function(){
+		// 	map.openInfoWindow(infoWindow, marker.point); //开启信息窗口
+		//     // saveRemark(marker.point.lat, marker.point.lng); 
+		// });
+		marker.addEventListener("mouseup", function(){
+		    var lat = marker.point.lat;
+		    var lng = marker.point.lng;
+		    $(window.parent.document).find('input[name=lng]').val(lng);
+		   	$(window.parent.document).find('input[name=lat]').val(lat);
+		   	var geoc = new BMap.Geocoder();
+		   	geoc.getLocation(new BMap.Point(lng,lat), function(rs){
+				var addComp = rs.addressComponents;
+				var dd = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+			   	$(window.parent.document).find('input[name=address]').val(dd);
+			   });
+		});
+	}
+
+</script>

@@ -1,0 +1,104 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="javascript:;">配置小区栏目</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex">
+	    	<div class="formbody">
+    			<form class="form-horizontal" role="form" method="post"  enctype="multipart/form-data">
+
+			    <div class="formtitle"><span>配置小区栏目</span></div>
+			    
+			    <ul class="forminfo">
+
+			    <li>
+			    	<label>小区</label>
+			    	<select class="form-control dfinput" style="width:150px;" name="id">
+						<option value="0">请选择小区</option>
+						<volist name="list" id="vo">
+							<option value="{$vo.id}" <?php if ($_GET['id'] == $vo['id']): ?>
+								selected="selected"
+							<?php endif; ?>>{$vo.name}</option>
+						</volist>
+					</select>
+			    </li>
+
+			    <li>
+			    	<label>配置栏目</label>
+			    	<input type="checkbox" name="config[]" value="1">  物业公告
+			    	<input type="checkbox" name="config[]" value="5"> 物业报修
+			    	<input type="checkbox" name="config[]" value="9">  物业费
+			    	<input type="checkbox" name="config[]" value="8"> 车位费
+			    	<input type="checkbox" name="config[]" value="10"> 号码查询
+			    	<input type="checkbox" name="config[]" value="6"> 手机缴费
+			    	<input type="checkbox" name="config[]" value="2"> 湖南移动
+			    	<input type="checkbox" name="config[]" value="7"> 水电燃气
+			    </li>
+
+			    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/>
+			    <input type="reset" class="btn btn-danger" value="重 置"></li>
+			    
+			    </ul>
+			    </form>
+			    
+			    </div>
+	    </div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('select[name=prov_id]').change(function(event) {
+			/* Act on the event */
+			var prov_id = $(this).val();
+			if (prov_id != 0) {
+				$.get('/index.php?m=Contentmanage&a=getCity&prov_id='+prov_id, function(data) {
+					var edata = eval(data);
+					var html = '<option value="0">请选择市</option>';
+					for (var i = edata.length - 1; i >= 0; i--) {
+						html += '<option value="'+edata[i]['id']+'">'+edata[i]['name']+'</option>';
+					}
+					$('select[name=city_id]').html(html);
+				});
+			}
+		});
+
+		$('select[name=city_id]').change(function(event) {
+			/* Act on the event */
+			var city_id = $(this).val();
+			if (city_id != 0) {
+				$.get('/index.php?m=Contentmanage&a=getArea&city_id='+city_id, function(data) {
+					var edata = eval(data);
+					var html = '<option value="0">请选择区/县</option>';
+					for (var i = edata.length - 1; i >= 0; i--) {
+						html += '<option value="'+edata[i]['id']+'">'+edata[i]['name']+'</option>';
+					}
+					$('select[name=pid]').html(html);
+				});
+			}
+		});
+	});
+</script>
+
+</body>
+
+</html>

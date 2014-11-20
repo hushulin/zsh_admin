@@ -1,30 +1,18 @@
-<?php
-// +----------------------------------------------------------------------
-// | 掌生活
-// +----------------------------------------------------------------------
-// | Copyright (c) 2014 http://www.jiepool.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: Eric(1023753031@qq.com)
-// +----------------------------------------------------------------------
-
-
+<?php 
+/**
+* 
+*/
 class AreamangeAction extends CommonAction
 {
-	
+	// 
 	public function index()
 	{
-		$this->display();
+		redirect(U('lists'));
 	}
 
-	public function list()
+	public function lists()
 	{
 		$this->display();
 	}
-
-	public function add()
-	{
-		$this->display();
-	}
-
 }
-?>
+ ?>

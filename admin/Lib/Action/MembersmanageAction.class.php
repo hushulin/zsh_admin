@@ -110,10 +110,8 @@ class MembersmanageAction extends CommonAction
 	{
 		$t = $_GET['t'];
 		$t = substr($t, 0,10);
-		$pre_t = $t-1000;
-		$next_t = $t+1000;
-		$count = D('User')->where("`login_time` > {$pre_t} and `login_time` < {$next_t}")->count();
-		Log::write(D()->getLastSql());
+		$pre_t = $t-432000;
+		$count = D('User')->where("`login_time` > {$pre_t}")->count();
 		die($count);
 	}
 }

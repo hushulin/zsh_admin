@@ -1,0 +1,125 @@
+<!-- 整个公共页头 -->
+<include file="Public:head" />
+<!-- 整个公共页头结束 -->
+				
+<!-- 主导航 -->
+<div class="navbar-header pull-left" >
+<include file="Public:nav" />
+</div>
+				
+<!-- 主导航右边 -->
+<div class="navbar-header pull-right" role="navigation">
+	<include file="Public:acenav" />
+</div><!-- /.navbar-header -->
+
+<!-- 左边列表 -->
+<include file="Public:leftnav" />
+
+<div style="position:absolute;top:88px;left:188px;width:100%;">
+	<div class="place" style="height:36px;">
+	    <span>位置：</span>
+	    <ul class="placeul">
+	    <li><a href="#">用户统计</a></li>
+	    </ul>
+	    </div>
+	    
+	    <div class="mainindex">
+	    <div id="container" style="min-width:800px;height:400px;"></div>
+	    </div>
+</div>
+<script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/highcharts.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		function getPointByTime(x) {
+		    //定义一个全局变量来接受$post的返回值
+		    var result;
+		    //用ajax的“同步方式”调用一般处理程序
+		    $.ajax({
+		        url: "/index.php?m=Membersmanage&a=getPoint&t="+x,
+		        async: false,//改为同步方式
+		        type: "GET",
+		        success: function (num) {
+		            result = num;
+		        }
+		    });
+		    return parseInt(result);
+		}
+
+		 Highcharts.setOptions({                                                     
+	            global: {                                                               
+	                useUTC: false                                                       
+	            }                                                                       
+	        }); 
+		 var chart;
+	    $('#container').highcharts({
+	        chart: {                                                                
+                type: 'spline',                                                     
+                animation: Highcharts.svg, // don't animate in old IE               
+                marginRight: 10,                                                    
+                events: {                                                           
+                    load: function() {                                              
+                                                                                    
+                        // set up the updating of the chart each second             
+                        var series = this.series[0];                                
+                        setInterval(function() {                                    
+                            var x = (new Date()).getTime(), // current time         
+                                y = getPointByTime(x);                                  
+                            series.addPoint([x, y], true, true);                    
+                        }, 3000);                                                   
+                    }                                                               
+                }                                                                   
+            }, 
+	        title: {
+	            text: '用户登录分析动态表'
+	        },
+	        xAxis: {                                                                
+                type: 'datetime',                                                   
+                tickPixelInterval: 150                                              
+            },
+	        yAxis: {                                                                
+                title: {                                                            
+                    text: '人数'                                                   
+                },                                                                  
+                plotLines: [{                                                       
+                    value: 0,                                                       
+                    width: 1,                                                       
+                    color: '#808080'                                                
+                }]                                                                  
+            },  
+            tooltip: {                                                              
+                formatter: function() {                                             
+                        return '<b>'+ this.series.name +'</b><br>'+                
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br>'+
+                        Highcharts.numberFormat(this.y, 2);                         
+                }                                                                   
+            },
+            legend: {                                                               
+                enabled: false                                                      
+            },                                                                      
+            exporting: {                                                            
+                enabled: false                                                      
+            },
+	        series: [{                                                              
+                name: '当前登录数',                                                
+                data: (function() {                                                 
+                    // generate an array of random data                             
+                    var data = [],                                                  
+                        time = (new Date()).getTime(),                              
+                        i;                                                          
+                                                                                    
+                    for (i = -19; i <= 0; i++) {                                    
+                        data.push({                                                 
+                            x: time + i * 3000,                                     
+                            y: Math.random()*10                                        
+                        });                                                         
+                    }                                                               
+                    return data;                                                    
+                })()                                                                
+            }]
+	    });
+	});
+</script>
+</body>
+</html>

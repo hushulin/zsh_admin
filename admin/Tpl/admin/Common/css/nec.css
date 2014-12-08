@@ -158,3 +158,6 @@
 .m-hd-fw li a{width:78px;padding:0;}
 /* tab直角 */
 .m-hd-ra,.m-hd-ra li a,.m-hd-ra li:first-child a,.m-hd-ra li:last-child a{border-radius:0;}
+
+.pagin  a{float:left;width:60px;height:28px;border:1px solid #DDD; text-align:center;line-height:30px;border-left:none;color:#3399d5;}
+.pagin  span{float:left;width:60px;height:28px;border:1px solid #DDD; text-align:center;line-height:30px;border-left:none;color:#3399d5;}

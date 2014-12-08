@@ -37,6 +37,58 @@ class BusinessmanageAction extends CommonAction
 		$this->display();
 	}
 
+	// 商品信息
+	public function goodsinfo()
+	{
+		$model = D('Deal');
+		$map = array();
+		$this->_list($model,$map);
+		$this->display();
+	}
+
+	// 删除商品
+	public function delgood()
+	{
+		$id = $_GET['id'];
+		D('Deal')->delete($id);
+		$this->success('删除成功');
+	}
+
+	// 下架
+	public function set0()
+	{
+		$id = $_GET['id'];
+		D('Deal')->where("`id` = {$id}")->setField('is_effect',0);
+		$this->success('下架成功');
+	}
+
+	// 订单
+	public function ordermanage()
+	{
+		$model = D('DealOrder');
+		$this->_list($model);
+		$this->display();
+	}
+
+	// 删除订单
+	public function delorder()
+	{
+		$id = $_GET['id'];
+		D('DealOrder')->delete($id);
+		$where['order_id'] = $id;
+		D('DealOrderItem')->where($where)->delete();
+		D('DealOrderLog')->where($where)->delete();
+		$this->success('删除成功');
+	}
+
+	// 取消订单
+	public function set3order()
+	{
+		$id = $_GET['id'];
+		D('DealOrder')->where("`id` = {$id}")->setField('order_status',3);
+		$this->success('取消成功');
+	}
+
 	// 指定商家分类
 	public function addType()
 	{

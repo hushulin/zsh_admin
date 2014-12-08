@@ -19,43 +19,56 @@
 	<div class="place" style="height:36px;">
 	    <span>位置：</span>
 	    <ul class="placeul">
-	    <li><a href="#">商家信息</a></li>
+	    <li><a href="#">订单信息</a></li>
 	    </ul>
 	    </div>
 	    
 	    <div class="mainindex" style="width:80%;position:relative;left:-100px;">
 	    	<link rel="stylesheet" type="text/css" href="__TMPL__Common/css/nec.css">
-	    	<a href="/index.php?m=Businessmanage&a=addBusiness" class="u-btn btn-xs">新增商家账号</a>
-	    	<br><br>
 	    	<table class="m-table">
 			<thead>
 				<tr>
 					<th style="width:40px;">编号</th>
-					<th>商家账户名</th>
-					<th>最后登录时间</th>
-					<th>最后登录IP</th>
-					<th>是否有效</th>
-					<th>操作</th>
+					<th>SN</th>
+					<th>用户</th>
+					<th>支付状态</th>
+					<th>订单状态</th>
+					<th>备注</th>
+					<th style="width:150px;">操作</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach ($list as $key => $value): ?>
 					<tr>
 						<td><?php echo $value['id']; ?></td>
-						<td><?php echo $value['adm_name']; ?></td>
+						<td><?php echo $value['order_sn']; ?></td>
 						<td>
-							<?php echo date('Y-m-d H:i:s',$value['login_time']); ?>
+							<?php echo $value['user_name'] ?>
 						</td>
-						<td><?php echo $value['login_ip']; ?></td>
-						<td><?php if ($value['is_effect'] == 1): ?>
-							有效
-						<?php else: ?>
-							无效
-						<?php endif; ?></td>
+						<td>
+							<?php if ($value['pay_status'] == 0): ?>
+								未支付
+							<?php elseif ($value['pay_status'] == 2): ?>
+								已支付
+							<?php else: ?>
+								部分支付
+							<?php endif; ?>
+						</td>
+						<td>
+							<?php if ($value['order_status'] == 1): ?>
+								买家已下单
+							<?php elseif ($value['order_status'] == 2): ?>
+								商家已发货
+							<?php else: ?>
+								订单取消
+							<?php endif; ?>
+						</td>
+						<td><?php echo $value['promote_description']; ?></td>
+						
 						<td>
 							<!-- <a href="/index.php?m=Dfff&a=edit_appff&id={$value['id']}" class="u-btn btn-xs">编辑</a> -->
-							<a href="#" class="u-btn btn-xs">删除</a>
-							<a href="/index.php?m=Businessmanage&a=seelocation&id={$value['id']}" class="u-btn btn-xs">查看店铺</a>
+							<a href="/index.php?m=Businessmanage&a=delorder&id={$value['id']}" class="u-btn btn-xs">删除</a>
+							<a href="/index.php?m=Businessmanage&a=set3order&id={$value['id']}" class="u-btn btn-xs">取消订单</a>
 						</td>
 					</tr>
 				<?php endforeach; ?>
